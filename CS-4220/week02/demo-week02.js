@@ -199,14 +199,22 @@ const workingWithArrays = () => {
     // TODO in LAB
     // use concat() to add 'pluto' string back to the planets array
     const addPluto = planets.concat('pluto');
-    // console.log(addPluto);
+    console.log(addPluto);
+
     // use concat() to add ['pluto'] array back to the planets array
+    const pluto = ['pluto'];
+    const addPlutoArr = planets.concat(pluto);
+    console.log(addPlutoArr);
 
     // TODO in LAB
     // use includes() to see if the planets array includes 'earth'
+    const hasEarth = planets.includes('earth');
+    console.log(hasEarth);
 
     // TODO in LAB
     // use sort() to sort the planets in alpha order
+    planets.sort();
+    console.log(planets);
 };
 workingWithArrays();
 
@@ -230,4 +238,4 @@ const findMin = (arr) => {
     return min;
 
 };
-console.log(findMin([0, 100, 'hi', null, -1, 5, false, 'hello']));
+//console.log(findMin([0, 100, 'hi', null, -1, 5, false, 'hello']));
