@@ -1,0 +1,38 @@
+Object Access
+
+Dot notation if you can use if there are no spaces and the id is one world or something simpl
+bracket notation is if you have spaces on the idea or special characters
+
+Bracket Notation:
+there are arrays
+
+there are key id
+
+
+Objects Add & Remove properties/keys
+adding properties
+    course.room = 'kh2005';
+    course['startTime] = '6:00PM';
+
+removing properties
+    delete course.room;
+    delete course['startTime'];
+
+For in loops:
+ const course = {
+    department: 'Computer Science';
+    number = 4220;
+ };
+
+ for (const key in course) {
+    console.log(key);
+    console.log(cousre[key]);
+ };
+
+ Do not use in arrays where you care about order.
+
+
+
+OBJECT keys
+Object.keys() purpose is to return a array of keys
+
