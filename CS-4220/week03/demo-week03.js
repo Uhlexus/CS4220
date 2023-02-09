@@ -12,6 +12,7 @@ const brokenArrayForIn = () => {
         console.log(arr[index]);
     }
 
+    //regular for loop
     for (let i = 0; i < arr.length; i++) {
         console.log(arr[i]);
     }
@@ -77,7 +78,6 @@ const deepComparison = (obj1, obj2) => {
     return true;
 };
 // console.log(
-//     'deep',
 //     deepComparison(
 //         { a: { b: 1 }, c: { d: 2 } },
 //         { a: { b: 1 }, c: { d: 2 } }
@@ -93,18 +93,28 @@ const objectLiteral = () => {
     };
 
     //access a property using dot notation
+    console.log(transformer.name);
 
     // access a property using bracket notation w/ string
+    console.log(transformer['name']);
 
     // add a key using dot notation
+    transformer.homeworld = 'Cybertron';
 
     // add a key using bracket notation w/ variable
+    const type = 'vehicleType';
+    transformer[type] = 'truck';
+    console.log(transformer);
 
     // delete a key using dot notation
+    delete transformer.homeworld;
 
     // delete a key using bracket notation w/ variable
+    delete transformer['vehicleType'];
+
+    console.log(transformer);
 };
-objectLiteral();
+// objectLiteral();
 
 // // -- Object Methods  ------------------------------------
 const objectMethods = () => {
@@ -115,18 +125,40 @@ const objectMethods = () => {
     };
 
     // Object.assign
+    Object.assign(course, {endTime: '8:45pm'});
+    console.log(course);
 
     // using a variable to create a key
+    const courseRoom = 'room';
+    Object.assign(course, {[courseRoom]: 'KH2005'});
+    console.log(course);
 
     // Object.assign with short hand notation
+    const year = 2023;
+    const semester = 'Spring';
+    
+    //old way 
+    //Object.assign(course, {year: year, semester: semester});
+
+    //better way
+    Object.assign(course, {year, semester});
+
+    console.log(course);
 
     // entries
+    const entries = Object.entries(course);
+    console.log(entries);
 
     // keys
+    const keys = Object.keys(course);
+    console.log(keys);
 
     // values
+    const values = Object.values(course);
+    console.log(values);
+
 };
-objectMethods();
+// objectMethods();
 
 // // -- Object Destructuring----------------------------------
 const objectDestructure = () => {
@@ -136,14 +168,32 @@ const objectDestructure = () => {
         colors: ['red', 'blue', 'silver']
     };
 
+    // destructuring
+    const { name, team, colors = [], vehicleType = 'truck' } = optimus;
+    console.log(name);
+    console.log(team);
+    console.log(colors);
+    console.log(vehicleType);
+
+
     const bumblebee = {
         name: 'Bumblebee',
         team: 'Autobots',
         colors: ['yellow', 'black'],
         vehicleType: 'camero'
     };
+
+    // destructuring
+    const { name: bname, team: bteam, colors: bcolors, vehicleType: btype } = bumblebee;
+    console.log(bname);
+    console.log(bteam);
+    console.log(bcolors);
+    console.log(btype);
+
+
+
 };
-objectDestructure();
+// objectDestructure();
 
 // // -- Object Spread ----------------------------------
 const objectSpread = () => {
@@ -153,13 +203,17 @@ const objectSpread = () => {
         tenure: '3 years',
         manager: 'Joker'
     };
+
     const corp = {
         manager: 'Bruce Wayne',
         company: 'Wayne Industries',
         location: 'Gotham City'
     };
+
+    const fullDetails = {...corp, ...dev};
+    console.log(fullDetails);
 };
-objectSpread();
+// objectSpread();
 
 // // Array Spread and Rest ---------------
 const arrayOps = () => {
@@ -175,16 +229,30 @@ const arrayOps = () => {
     ];
 
     // copy spread
+    const copy = [...planents].reverse();
+    // console.log(copy);
+    // console.log(planents);
 
     // concat spread
+    const dwarfPlanets = ['Pluto', 'Ceres', 'Eris', 'Makemake', 'Haumea'];
+    const updatePlanets = [...planents, ...dwarfPlanets];
+    //console.log(updatePlanets);
 
     // rest
+    const [mercury, venus, earth, ...remaining] = planents;
+    console.log(mercury);
+    console.log(venus);
+    console.log(earth);
+    console.log(remaining);
 };
-arrayOps();
+//arrayOps();
 
 // // Function Rest ---------------
-const fnRest = (...args) => {};
-fnRest();
+const fnRest = (...args) => {
+    console.log(args);
+    console.log(args.length);
+};
+//fnRest('mic', 'check', 1, 2);
 
 // EXAMPLE Object PROBLEM
 // Write a Function called convertToArray.
@@ -207,11 +275,28 @@ fnRest();
 //     [ 'game', 'Elden Ring' ],
 //     [ 'year', 2022 ]
 // ]
-const convertToArray = (game) => {};
+const convertToArray = (game) => {
+    const gameArray = [];
 
-convertToArray({
-    developer: 'FromSoftware',
-    genre: 'RPG',
-    game: 'Elden Ring',
-    year: 2022
-});
+    const keys = Object.keys(game);
+    for(let i = 0; i < keys.length; i++){
+        const pairing = [];
+
+        const key = keys[i];
+        const value = game[key];
+
+        pairing.push(key, value);
+        gameArray.push(pairing);
+    }
+
+    return gameArray;
+};
+
+console.log(
+    convertToArray({
+        developer: 'FromSoftware',
+        genre: 'RPG',
+        game: 'Elden Ring',
+        year: 2022
+    })
+);
