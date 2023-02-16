@@ -25,11 +25,11 @@ const sumEvenOdd = (num) => {
         sum += Number.parseInt(numPos);
     }
 
-    const ans = sum % 2 == 0 ? 'even' : 'odd';
+    const ans = sum % 2 === 0 ? 'even' : 'odd';
 
     return `The sum of the digits for ${num} is ${ans}`;
 
-}
+};
 
 console.log(sumEvenOdd(11));
 console.log(sumEvenOdd(12345));
@@ -37,16 +37,16 @@ console.log(sumEvenOdd(12345));
 
 //Problem 3 : countNestedWord
 const countNestedWord = (word1, find) => {
-    word = word1.toLowerCase();
+    let word = word1.toLowerCase();
     find = find.toLowerCase();
     let count = 0;
     for (let i = 0; i < word.length; i++) {
-        if (word[i] == find[0]) {
+        if (word[i] === find[0]) {
             for (let startWord = 0; startWord < find.length; startWord++) {
-                if (word[i] == find[find.length - 1] && startWord == find.length - 1) {
+                if (word[i] === find[find.length - 1] && startWord === find.length - 1) {
                     count++;
                 }
-                else if (word[i] != find[startWord]) {
+                else if (word[i] !== find[startWord]) {
                     i++;
                     break;
                 } else {
@@ -56,7 +56,7 @@ const countNestedWord = (word1, find) => {
         }
     }
     return count;
-}
+};
 
 console.log(countNestedWord(
     'nodejavascriptnodevscodejsnodejavascriptvscodenopenonenode',
@@ -74,18 +74,20 @@ console.log(countNestedWord(
 
 //Problem 4 : cleanPhrase
 const cleanPhrase = (phrase) => {
+    let newPhrase = '';
     for (let x = 0; x < phrase.length; x++) {
         const num = phrase[x];
-        console.log(num);
         if (!isNaN(num)) {
-            if (num != ' ') {
-
-                phrase = phrase.replace(num, '');
+            if (num === ' ') {
+                newPhrase = newPhrase + num;
             }
+        }
+        else {
+            newPhrase = newPhrase + num;
         }
     }
 
-    return phrase;
+    return newPhrase;
 };
 
 console.log(cleanPhrase('Th7e qu1ick br8own fo0x jum1ps over 22the la9zy d3og5.'));
@@ -98,11 +100,11 @@ const reverseAtWord = (wordArray, word) => {
     let otherArray = [];
     for (let i = 0; i < wordArray.length; i++) {
         if (word === wordArray[i]) {
-            if (i == 0) {
+            if (i === 0) {
                 newArray = wordArray.reverse();
                 break;
             }
-            else if (i == wordArray.length - 1) {
+            else if (i === wordArray.length - 1) {
                 const lastVal = wordArray.pop();
                 newArray = wordArray;
                 otherArray.push(lastVal);
@@ -140,7 +142,7 @@ const ascendingArray = (wordArray) => {
     for (let i = 0; i < lengthArray.length; i++) {
         const len = lengthArray[i];
         for (let x = 0; x < wordArray.length; x++) {
-            if (len == wordArray[x].length) {
+            if (len === wordArray[x].length) {
                 newArray.push(wordArray[x]);
             }
         }
