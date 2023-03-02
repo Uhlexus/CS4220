@@ -1,0 +1,14 @@
+{
+  "name": "superagent-example",
+  "version": "1.0.0",
+  "description": "CS-4220 demo for using superagent",
+  "main": "superagent-request.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kalvin Mateo",
+  "license": "ISC",
+  "dependencies": {
+    "superagent": "^8.0.9"
+  }
+}
