@@ -24,14 +24,23 @@ const superagent = require('superagent');
 
 const requestPromise = async (url, callee) => {
     try {
+        const start = Date.now();
         const response = await superagent.get(url);
+        const millis = Date.now() - start;
+        console.log(url);
+        console.log(millis);
         console.log(response.statusCode);
-        console.log(response.headers);
         console.log(response.body);
-    } catch (error){
+        console.log(callee);
+    } catch (error) {
         console.log(error);
+        console.log(error.statusCode);
+        console.log(callee);
+
     }
 };
+
+console.log(requestPromise(websites, 'async/await'));
 
 // // # 3 - Invoke the requestPromise() using then/catch for each websites object above
 

@@ -11,18 +11,18 @@ const cdnjs = 'https://api.cdnjs.com/libraries?limit=10';
 
 
 // use superagent with callbacks
-const superagentCallbacks = (url) => {
-    superagent.get(url).end((error, response) => {
-        if (!error) {
-            console.log(response.statusCode);
-            console.log(response.headers);
-            console.log(response.body);
-        } else {
-            console.error(error);
-        }
-    });
-};
-superagentCallbacks(cdnjs);
+// const superagentCallbacks = (url) => {
+//     superagent.get(url).end((error, response) => {
+//         if (!error) {
+//             console.log(response.statusCode);
+//             console.log(response.headers);
+//             console.log(response.body);
+//         } else {
+//             console.error(error);
+//         }
+//     });
+// };
+// superagentCallbacks(cdnjs);
 
 // use superagent with async/await
 const superagentAsyncAwait = async (url) => {
