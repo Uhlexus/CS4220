@@ -1,0 +1,12 @@
+{
+  "name": "card-app-cli",
+  "version": "1.0.0",
+  "description": "a cli app for playing card game",
+  "main": "cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kalvin Mateo",
+  "contributors": ["PersonFirstName PersonLastName"],
+  "license": "ISC"
+}
