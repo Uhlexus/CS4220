@@ -7,6 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kalvin Mateo",
-  "contributors": ["PersonFirstName PersonLastName"],
-  "license": "ISC"
+  "contributors": [
+    "PersonFirstName PersonLastName"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "superagent": "^8.0.9",
+    "yargs": "^17.7.1"
+  }
 }
