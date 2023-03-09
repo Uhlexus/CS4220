@@ -1,4 +1,4 @@
-// // -- Promises vs Callbacks and "Callback Hell" ---------------------------------------
+// // -- Promises vs Callbacks and Callback "Hell" ---------------------------------------
 
 // const downloadImage = () => {};
 // const processImage = () => {};
@@ -91,16 +91,109 @@ const catalog = {
 
 // // -- Callbacks -------------------------------------------------------------------------------
 
-// write function to mimic download time - accepts a game object and a callback function
+// accept a game object and a callback function
+const mimicDownloadCB = (game, callback) => {
+    // download time is on the order of ms
+    const downloadTime = game ? game.download_time : 0;
 
-// write function to select game - accepts a catalog object and selection as a string
+    setTimeout(() => {
+        if (!game) {
+            callback({ error: 'Game is not available.' });
+        } else {
+            callback(null, {
+                name: game.name,
+                settings: game.settings,
+                ready: true
+            });
+        }
+    }, downloadTime);
+};
+
+// accepts a catalog objects and selections as a string
+const selectGameCB = (catalog, selection) => {
+    mimicDownloadCB(catalog[selection], (error, success) => {
+        if (error) {
+            console.error(error);
+        } else {
+            console.log(success);
+        }
+    });
+};
+
+selectGameCB(catalog, 'elden_ring');
+selectGameCB(catalog, 'bioshock');
+selectGameCB(catalog, 'overwatch');
 
 // // -- Promises --------------------------------------------------------------------------------
 
-// write function to mimic download time - accepts a game object
+// accept a game object
+const mimicDownloadPromise = (game) => {
+    const downloadTime = game ? game.download_time : 0;
 
-// write function to select game - accepts a catalog object and selection as a string
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (!game) {
+                reject({ error: 'Game is not available.' });
+            } else {
+                resolve({ name: game.name, settings: game.settings });
+            }
+        }, downloadTime);
+    });
+};
+// accepts a catalog objects and selections as a string
+const selectGamePromise = (catalog, selection) => {
+    return new Promise((resolve, reject) => {
+        resolve(catalog[selection]);
+    });
+};
+
+selectGamePromise(catalog, 'elden_ring')
+    .then((game) => {
+        return mimicDownloadPromise(game);
+    })
+    .then((downloaded) => {
+        console.log(downloaded);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+
+selectGamePromise(catalog, 'bioshock')
+    .then((game) => {
+        return mimicDownloadPromise(game);
+    })
+    .then((downloaded) => {
+        console.log(downloaded);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+
+selectGamePromise(catalog, 'overwatch')
+    .then((game) => {
+        return mimicDownloadPromise(game);
+    })
+    .then((downloaded) => {
+        console.log(downloaded);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
 
 // // -- Async/Await with Promises ----------------------------------------------------------------
 
-// write function to select game - accepts a catalog object and selection as a string
+// accepts a catalog objects and selections as a string
+const selectGameWrapper = async (catalog, selection) => {
+    try {
+        const selected = await selectGamePromise(catalog, selection);
+        const downloaded = await mimicDownloadPromise(selected);
+
+        console.log(downloaded);
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+selectGameWrapper(catalog, 'elden_ring');
+selectGameWrapper(catalog, 'bioshock');
+selectGameWrapper(catalog, 'overwatch');

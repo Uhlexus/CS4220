@@ -1,5 +1,7 @@
 const yargs = require('yargs/yargs');
 
+const app = require('./app.js');
+
 yargs( process.argv.slice(2))
     // $0 expands the name of the file
     //<> indicate the command is mandatory
@@ -27,10 +29,14 @@ yargs( process.argv.slice(2))
         //handler
         (args) => {
             if (args.game === 'poker') {
-                console.log(args);
+                // play poker
+                app.playPoker(args);
             } else {
                 console.log(`${args.game} is not ready`);
             }
         }
         
-    );
+    )
+    .help().argv;
+
+
