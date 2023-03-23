@@ -1,0 +1,14 @@
+{
+  "name": "midterm",
+  "version": "1.0.0",
+  "description": "Superhero information",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kalvin Mateo, , ",
+  "license": "ISC",
+  "dependencies": {
+    "superagent": "^8.0.9"
+  }
+}

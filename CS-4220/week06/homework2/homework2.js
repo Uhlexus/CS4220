@@ -26,26 +26,59 @@ const requestPromise = async (url, callee) => {
     try {
         const start = Date.now();
         const response = await superagent.get(url);
-        const millis = Date.now() - start;
-        console.log(url);
-        console.log(millis);
-        console.log(response.statusCode);
-        console.log(response.body);
-        console.log(callee);
-    } catch (error) {
-        console.log(error);
-        console.log(error.statusCode);
-        console.log(callee);
+        const duration = (Date.now() - start) / 1000;
+        console.log(`url: ${url}`);
+        console.log(`duration: ${duration}`)
+        console.log(`status: ${response.statusCode}`);
+        console.log(`content-type: ${response.headers['content-type']}`)
+        console.log(`callee: ${callee}`)
 
+    } catch (error) {
+        console.log(`url: ${url}`);
+        console.log(`status: ${error.response ? error.response.status : null}`)
+        console.log(`callee: ${callee}`)
     }
 };
 
-console.log(requestPromise(websites, 'async/await'));
 
 // // # 3 - Invoke the requestPromise() using then/catch for each websites object above
+requestPromise(websites.dummyjson.url, 'async/await')
+    .then(response => console.log(response))
+    .catch((error) => console.error(error));
+requestPromise(websites.spotify.url, 'async/await')
+    .then(response => console.log(response))
+    .catch((error) => console.error(error));
+requestPromise(websites.nasa.url, 'async/await')
+    .then(response => console.log(response))
+    .catch((error) => console.error(error));
+requestPromise(websites.unknown.url, 'async/await')
+    .then(response => console.log(response))
+    .catch((error) => console.error(error));
+
 
 // // # 4 - Write the requestWrapper() function which interacts with the requestPromise() function
+async function requestWrapper(url, callee) {
+    try {
+        const response = await requestPromise(url, callee);
+        console.log({
+            url: response.url,
+            duration: response.duration,
+            status: response.statusCode,
+            content: response.headers['content-type'],
+            callee: callee
+        });
+    } catch (error) {
+        console.log({
+            url: error.url,
+            status: error.statusCode,
+            callee: callee
+        });
+    }
+}
+
 
 // // # 5 - Invoke the requestWrapper() for each websites object above
-
-
+requestWrapper(websites.dummyjson.url, 'async/await');
+requestWrapper(websites.spotify.url, 'async/await');
+requestWrapper(websites.nasa.url, 'async/await');
+requestWrapper(websites.unknown.url, 'async/await');

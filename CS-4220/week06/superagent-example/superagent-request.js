@@ -27,6 +27,7 @@ const cdnjs = 'https://api.cdnjs.com/libraries?limit=10';
 // use superagent with async/await
 const superagentAsyncAwait = async (url) => {
     try {
+
         const response = await superagent.get(url);
         console.log(response.statusCode);
         console.log(response.headers);
