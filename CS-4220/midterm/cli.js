@@ -8,14 +8,14 @@ yargs(process.argv.slice(2))
     .command(
        
         'search <keyword>',
-        'search for an anime',
+        'search for a hero or villain',
     
         (yargs) => {
        
             return (
                 yargs
                     .positional('keyword', {
-                        describe: 'name of the anime',
+                        describe: 'name of the the hero or villain',
                         type: 'string',
                     })
             );
