@@ -1,6 +1,6 @@
 const superagent = require('superagent');
 
-const token = "6113504278737850"
+const token = '6113504278737850';
 
 const superhero = `https://superheroapi.com/api/${token}`;
 
@@ -10,8 +10,8 @@ const superhero = `https://superheroapi.com/api/${token}`;
 
 const chooseHero = async (todoType) => {
     try {
-        const typeURL = `${superhero}/`;
-        const res = await superagent.get(typeURL);
+        const heroURL = `${superhero}/`;
+        const res = await superagent.get(heroURL);
         console.log(res.body);
         return res.body;
     } catch (error) {
@@ -23,8 +23,8 @@ chooseHero();
 //Getting hero by id
 const randomHero = async (randomHero) => {
     try {
-        const ranURL = `${superhero}?heroID=${randomHero}`;
-        const res = await superagent.get(ranURL);
+        const randomURL = `${superhero}?heroID=${randomHero}`;
+        const res = await superagent.get(randomURL);
         return res.body;
     } catch (error) {
         console.log(error);
@@ -33,6 +33,6 @@ const randomHero = async (randomHero) => {
 
 
 module.exports = {
-    selectHero,
+    chooseHero,
     randomHero
 };
