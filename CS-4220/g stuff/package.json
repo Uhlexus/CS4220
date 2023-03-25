@@ -1,0 +1,15 @@
+{
+  "name": "bored-api",
+  "version": "1.0.0",
+  "description": "a cli  to interact with an api that helps you find things to do when you're bored",
+  "main": "cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Thaddeus Owens, Gabriela Alvarado",
+  "license": "ISC",
+  "dependencies": {
+    "superagent": "^8.0.9",
+    "yargs": "^17.7.1"
+  }
+}
