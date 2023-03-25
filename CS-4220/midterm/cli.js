@@ -23,7 +23,7 @@ yargs(process.argv.slice(2))
 
         (args) => {
             if(args.keyword) {
-                app.searchAnime(args);
+                app.searchSuper(args);
             }
             else {
                 console.log(`${args.keyword} was not found.`);
